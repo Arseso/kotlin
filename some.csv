@@ -1,0 +1,4 @@
+Id,SideA,SideB,SideC,BorderColor,FillColor
+1,1,2,5,GREEN,RED
+2,2,3,5,RED,GREEN
+3,2,3,4,RED,GREEN
