@@ -17,6 +17,7 @@ dependencies {
     implementation("org.http4k:http4k-core:5.32.0.0")
     implementation("org.http4k:http4k-client-apache:5.32.0.0")
     implementation("org.http4k:http4k-server-netty:5.32.0.0")
+    implementation("org.http4k:http4k-format-jackson:5.32.0.0")
     testImplementation(kotlin("test"))
 }
 
