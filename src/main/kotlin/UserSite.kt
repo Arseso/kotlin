@@ -131,6 +131,34 @@ fun main(){
                 )
             }
 
+        },
+
+        "/top" bind Method.GET to {
+            request ->
+            try {
+                val count = request.query("top")?.toIntOrNull() ?: -1
+                if(count <= 0) Response(Status.BAD_REQUEST).body(
+                    makeJson(
+                        Error("error")
+                    )
+                )
+                else {
+                    val users_map: MutableMap<String, String> = users.associate {it.login to it.email}.toMutableMap()
+                    Response(Status.OK).body(makeJson(users_map
+                        .toList()
+                        .sortedBy { it.first }
+                        .take(count).associate {it.first to it.second}.toMutableMap()
+                    ))
+                }
+
+
+            } catch (e: Exception){
+                Response(Status.BAD_REQUEST).body(
+                    makeJson(
+                        Error("Element not found")
+                    )
+                )
+            }
         }
     ).asServer(Netty(9000))
     router.start()
